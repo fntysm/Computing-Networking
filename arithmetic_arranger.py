@@ -1,6 +1,12 @@
+# import numpy as np y=np.transpose(x)
+def transposee(matrix):
+    result = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+    return result
+
 def arithmetic_arranger(problems, bool=False):
     problemsConstruction = []
-    if problems.__len__() > 5:
+    countProblems = problems.__len__()
+    if  countProblems > 5:
         return "Error: Too many problems."
     operators = ["+", "-"]
     for problem in problems:
@@ -31,9 +37,18 @@ def arithmetic_arranger(problems, bool=False):
     print(problemsConstruction)
     op = problemsConstruction
     j = 0
+    # print(f"{array[0]:>i}{array[1]:>}")
     # print(firstOperand,"\n",problem[pos]," "*max(firstDigits,secondDigits),abs(secondOperand),"\n","-"*lines)
-    for op in problemsConstruction:
-        op = ""
+    problemsConstruction = transposee(op)
+    print("sa transposée: ",problemsConstruction)
+    i=0
+    for line in problemsConstruction:
+        if i==0:
+            str = countProblems*'{:>8}'
+            print(str.format(*line))
+        elif i==1:
+            str = countProblems*'{:>4}'
+            print(str.format(*line))
 
 
 
@@ -42,7 +57,12 @@ def arithmetic_arranger(problems, bool=False):
 
 
 
-array = ["3475+6", "14-6353","89-367","542-369"]
+
+
+
+
+
+array = ["3475+6", "14-6353","89-367","542-369","25-96"]
 print(arithmetic_arranger(array))
-# print(f"{array[0]:>i}{array[1]:>}")
+
 

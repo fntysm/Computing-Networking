@@ -18,7 +18,7 @@ def arithmetic_arranger(problems, bool=False):
             firstOperand = int(firstOperandstr)
             secondOperand = int(secondOperandstr)
             firstDigits = firstOperandstr.__len__()
-            secondDigits = secondOperandstr.__len__()
+            secondDigits = secondOperandstr.__len__()-1
             if firstDigits>4 or secondDigits>4:
                 return "Error: Numbers cannot be more than four digits."
         except ValueError:
@@ -26,16 +26,23 @@ def arithmetic_arranger(problems, bool=False):
         lines = max(firstDigits,secondDigits)+2
         problemConstruction = [firstOperand,secondOperand,problem[pos],lines]
         problemsConstruction.append(problemConstruction)
-        print(firstOperand,"\n",problem[pos]," "*max(firstDigits,secondDigits),abs(secondOperand),"\n","-"*lines)
-    arranged_problems = problemsConstruction
-    return arranged_problems
+        const1 = max(firstDigits,secondDigits)
+        const2 = min(firstDigits,secondDigits)
+    print(problemsConstruction)
+    op = problemsConstruction
+    j = 0
+    # print(firstOperand,"\n",problem[pos]," "*max(firstDigits,secondDigits),abs(secondOperand),"\n","-"*lines)
+    for op in problemsConstruction:
+        op = ""
 
 
 
 
 
 
-array = ["3475+6", "14-53","89-36"]
+
+
+array = ["3475+6", "14-6353","89-367","542-369"]
 print(arithmetic_arranger(array))
 # print(f"{array[0]:>i}{array[1]:>}")
 

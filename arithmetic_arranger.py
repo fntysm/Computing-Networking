@@ -37,22 +37,33 @@ def arithmetic_arranger(problems, bool=False):
         line21 = problem[pos].rjust(1)
         line22 = secondOperandstr[1::].rjust(lines-2)
         dashes = '-'*lines
-        arranged_problem =""+line1+"\n"+line21+" "+line22+"\n"+dashes
+         #arranged_problem =""+line1+"\n"+line21+" "+line22+"\n"+dashes
+        arranged_problem = [line1,line21+" "+line22,dashes]
         arranged_problems.append(arranged_problem)
-    print(problemsConstruction)
-    i=-1
-    for lineOp in arranged_problems:
-        print(lineOp, end=' ')
-        i+=1
-        if (bool==True):
-            print((str(problemsConstruction[i][0]+problemsConstruction[i][1])).rjust(problemsConstruction[i][3]),"\n")
+    arranged_problemsT = transposee(arranged_problems)
+    print(arranged_problemsT)
+    i=0
+    j=0
+    while(j<countProblems):
+        k = 0
+        while(k<3):
+            print(arranged_problemsT[j][k],end='    ')
+            k+=1
+           # if (bool == True and k==2):
+            #    print((str(problemsConstruction[i][0] + problemsConstruction[i][1])).rjust(problemsConstruction[i][3]))
+        i += 1
+        print("")
+        j += 1
 
 
 
 
 
 
-array = ["3475-6", "14+6353","25-96"]
-print(arithmetic_arranger(array))
+
+
+
+array = ["32+8", "1-3801", "9999+9999", "523-89"]
+print(arithmetic_arranger(array),True)
 
 

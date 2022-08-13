@@ -4,6 +4,7 @@ def transposee(matrix):
     return result
 
 def arithmetic_arranger(problems, bool=False):
+    arranged_problems = []
     problemsConstruction = []
     countProblems = problems.__len__()
     if  countProblems > 5:
@@ -32,27 +33,26 @@ def arithmetic_arranger(problems, bool=False):
         lines = max(firstDigits,secondDigits)+2
         problemConstruction = [firstOperand,secondOperand,problem[pos],lines]
         problemsConstruction.append(problemConstruction)
+        line1 = firstOperandstr.rjust(lines)
+        line21 = problem[pos].rjust(1)
+        line22 = secondOperandstr[1::].rjust(lines-2)
+        dashes = '-'*lines
+        arranged_problem =""+line1+"\n"+line21+" "+line22+"\n"+dashes
+        arranged_problems.append(arranged_problem)
     print(problemsConstruction)
-    ''''op = problemsConstruction
-    problemsConstruction = transposee(op)
-    print("sa transposée: ",problemsConstruction)'''
-    arranged_problems = ""
-    for i in range(0,countProblems):
-        string = countProblems * '{:>8}'
-        firstOperandstr = str(problemsConstruction[i][0])
-        secondOperandstr = str(abs(problemsConstruction[i][1]))
-        operationSign = problemsConstruction[i][2]
-        maxDigits = problemsConstruction[i][3] - 2
-        lines = problemsConstruction[i][3]
-        arranged_problems += " "*maxDigits + firstOperandstr + "\n" + operationSign +" "*maxDigits + secondOperandstr + "\n" + "-"*lines+ "\n"
-    return arranged_problems
+    i=-1
+    for lineOp in arranged_problems:
+        print(lineOp, end=' ')
+        i+=1
+        if (bool==True):
+            print((str(problemsConstruction[i][0]+problemsConstruction[i][1])).rjust(problemsConstruction[i][3]),"\n")
 
 
 
 
 
 
-array = ["3475-6", "14+6353","89-367","542+369","25-96"]
+array = ["3475-6", "14+6353","25-96"]
 print(arithmetic_arranger(array))
 
 

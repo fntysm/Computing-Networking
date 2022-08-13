@@ -32,37 +32,27 @@ def arithmetic_arranger(problems, bool=False):
         lines = max(firstDigits,secondDigits)+2
         problemConstruction = [firstOperand,secondOperand,problem[pos],lines]
         problemsConstruction.append(problemConstruction)
-        const1 = max(firstDigits,secondDigits)
-        const2 = min(firstDigits,secondDigits)
     print(problemsConstruction)
-    op = problemsConstruction
-    j = 0
-    # print(f"{array[0]:>i}{array[1]:>}")
-    # print(firstOperand,"\n",problem[pos]," "*max(firstDigits,secondDigits),abs(secondOperand),"\n","-"*lines)
+    ''''op = problemsConstruction
     problemsConstruction = transposee(op)
-    print("sa transposée: ",problemsConstruction)
-    i=0
-    for line in problemsConstruction:
-        if i==0:
-            str = countProblems*'{:>8}'
-            print(str.format(*line))
-        elif i==1:
-            str = countProblems*'{:>4}'
-            print(str.format(*line))
+    print("sa transposée: ",problemsConstruction)'''
+    arranged_problems = ""
+    for i in range(0,countProblems):
+        string = countProblems * '{:>8}'
+        firstOperandstr = str(problemsConstruction[i][0])
+        secondOperandstr = str(abs(problemsConstruction[i][1]))
+        operationSign = problemsConstruction[i][2]
+        maxDigits = problemsConstruction[i][3] - 2
+        lines = problemsConstruction[i][3]
+        arranged_problems += " "*maxDigits + firstOperandstr + "\n" + operationSign +" "*maxDigits + secondOperandstr + "\n" + "-"*lines+ "\n"
+    return arranged_problems
 
 
 
 
 
 
-
-
-
-
-
-
-
-array = ["3475+6", "14-6353","89-367","542-369","25-96"]
+array = ["3475-6", "14+6353","89-367","542+369","25-96"]
 print(arithmetic_arranger(array))
 
 

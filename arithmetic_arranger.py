@@ -14,6 +14,8 @@ def arithmetic_arranger(problems, bool=False):
     countProblems = problems.__len__()
     if  countProblems > 5:
         return "Error: Too many problems."
+    elif countProblems == 0:
+        return "No problem was supplied"
     operators = ["+", "-"]
     # now, because the existence of only one operator from the array: operators is required: we will check it
     for problem in problems:

@@ -25,10 +25,3 @@ print(create_spend_chart([food, clothing, auto]))
 # Run unit tests automatically
 #main(module='test_module', exit=False)
 
-ledgerObject = [
-{"amount": 18, "description": "hi bestie"},
-{"amount": 19, "description": "hi besties"},
-{"amount": 20, "description": "hi bestiess"}
-]
-for eachObject in ledgerObject:
-    print(eachObject.get("amount"))

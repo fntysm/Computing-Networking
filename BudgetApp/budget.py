@@ -6,6 +6,11 @@ def create_spend_chart(categories):
         bar_chart += str(percentage).rjust(3) + "|\n"
         percentage -= 10
     return bar_chart
+def rounded_withdraws(categories):
+    withdrawsRespectively = []
+    for eachCategory in categories:
+        withdrawsRespectively.append(round(abs(eachCategory.amount_spent()),-1))
+    print(withdrawsRespectively)
 
 class Category:
     # the ledger contain various objects, in the form of {"amount": amount, "description": description}

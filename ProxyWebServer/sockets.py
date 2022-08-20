@@ -34,4 +34,3 @@ class Server:
             # The main purpose of a daemon thread is to execute background task especially in case of some routine periodic task or work.
             d.setDaemon(True)
             d.start()
-  

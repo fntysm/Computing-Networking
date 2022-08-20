@@ -1,0 +1,3 @@
+going to use a google framework: mediapipe
+OpenCV library in python is a computer vision library that is widely used for image analysis,
+image processing, detection, recognition, etc.

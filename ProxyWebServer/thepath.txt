@@ -6,4 +6,10 @@ benefits:  privacy: invisible IP address
 we would be developing a simple multi-threaded proxy server capable of handling HTTP traffic.
 mostly based on the basic socket programming ideas.
 
+1. creating an incoming socket
+2. accept client and process
+once a successful connection is made, we dispatch the request in a separate thread,
+making ourselves available for the next request.
+This allows us to handle multiple requests simultaneously which boosts the performance of the server multifold times.
+
 credits to geeksforgeeks.org on the internet.

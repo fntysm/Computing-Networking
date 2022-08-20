@@ -1,0 +1,9 @@
+a proxy server, retrieves data on the internet, on behalf of the user
+benefits:  privacy: invisible IP address
+           speed : cache database and saving bandwidth
+           activity logging (in  a company)
+
+we would be developing a simple multi-threaded proxy server capable of handling HTTP traffic.
+mostly based on the basic socket programming ideas.
+
+credits to geeksforgeeks.org on the internet.

@@ -1,6 +1,12 @@
 import signal
 import socket
 import threading
+import sys
+
+config = {
+    'BIND_PORT': '',
+    'MAX_REQUEST_LEN': ''
+}
 
 
 class Server:
@@ -19,7 +25,7 @@ class Server:
         # bind the socket to a public host or a port
         # ADDRESS OF BIND PORT
         self.serverSocket.bind(config['BIND_PORT'])
-        # Enable a server to accept connections,
+        # Enable a server to accept connections, we chose 10 clients
         self.serverSocket.listen(10)
         self.clients = {}
 
@@ -34,3 +40,12 @@ class Server:
             # The main purpose of a daemon thread is to execute background task especially in case of some routine periodic task or work.
             d.setDaemon(True)
             d.start()
+
+    def proxyTraffic(self, connection):
+        # here we get the request from the browser
+        # .recv() is to receive data from TCP and UDP sockets
+        request = connection.recv(config['MAX_REQUEST_LEN'])
+        # here we retrieve the first line
+        first_line = request.split('\n')[0]
+        url = first_line.split(' ')[1]
+

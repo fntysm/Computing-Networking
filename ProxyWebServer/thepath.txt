@@ -11,5 +11,8 @@ mostly based on the basic socket programming ideas.
 once a successful connection is made, we dispatch the request in a separate thread,
 making ourselves available for the next request.
 This allows us to handle multiple requests simultaneously which boosts the performance of the server multifold times.
-
+3. redirecting the traffic:
+- we extract the URL from the received request data.
+- we find the destination address of the request. Address is a tuple of (destination_ip_address, destination_port_no).
+We will be receiving data from this address.
 credits to geeksforgeeks.org on the internet.

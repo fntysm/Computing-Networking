@@ -15,4 +15,10 @@ This allows us to handle multiple requests simultaneously which boosts the perfo
 - we extract the URL from the received request data.
 - we find the destination address of the request. Address is a tuple of (destination_ip_address, destination_port_no).
 We will be receiving data from this address.
+- Now, we setup a new connection to the destination server (or remote server),
+and then send a copy of the original request to the server. The server will then respond with a response.
+All the response messages use the generic message format of RFC 822.
 credits to geeksforgeeks.org on the internet.
+- We then redirect the server’s response to the client. conn is the original connection to the client.
+The response may be bigger than MAX_REQUEST_LEN that we are receiving in one call, so,
+a null response marks the end of the response.

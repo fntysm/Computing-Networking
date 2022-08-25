@@ -3,14 +3,6 @@ import socket
 import threading
 import sys
 
-config = {
-    'HOST_NAME': '',
-    'BIND_PORT': '',
-    'MAX_REQUEST_LEN': '',
-    'CONNECTION_TIMEOUT' : 10
-}
-
-
 class Server:
     # creating a socket for the incoming connections, we bind the socket and wait for the client to connect
     def __init__(self, config):

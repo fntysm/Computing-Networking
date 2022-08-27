@@ -21,15 +21,17 @@ class HandAI:
         # print(results.multi_hand_landmarks)
         if self.results.multi_hand_landmarks:
             # if we detected hand(s)
-            for eachHand in self.results.multi_hand_landmarks:
-                for id, lm in enumerate(eachHand.landmark):
-                    print(id, lm)
-                    height, width, channel = record.shape
-                    # to find the position
-                    cx, cy = int(lm.x * width), int(lm.y * height)
-                    cv2.putText(record, str(id + 1), (cx, cy), cv2.FONT_HERSHEY_PLAIN, 1, (0,0,128), 2)
-                self.mpDraw.draw_landmarks(record, eachHand, self.mp_hands.HAND_CONNECTIONS)
+            for self.eachHand in self.results.multi_hand_landmarks:
+                self.findPos(record, self.eachHand)
+                self.mpDraw.draw_landmarks(record, self.eachHand, self.mp_hands.HAND_CONNECTIONS)
         return record
+    def findPos(self, record, eachHand):
+        for id, lm in enumerate(self.eachHand.landmark):
+            print(id, lm)
+            height, width, channel = record.shape
+            # to find the position
+            cx, cy = int(lm.x * width), int(lm.y * height)
+            cv2.putText(record, str(id + 1), (cx, cy), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 128), 2)
 def HandMain():
     cam = cv2.VideoCapture(0)
     Hands = HandAI()

@@ -1,3 +1,7 @@
 going to use a google framework: mediapipe
 OpenCV library in python is a computer vision library that is widely used for image analysis,
 image processing, detection, recognition, etc.
+
+* create a video object ( using a webcam )
+* create a module to detect a location in the hand from an input value
+* extracting hand by hand

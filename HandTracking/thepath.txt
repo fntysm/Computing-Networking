@@ -5,3 +5,8 @@ image processing, detection, recognition, etc.
 * create a video object ( using a webcam )
 * create a module to detect a location in the hand from an input value
 * extracting hand by hand
+* Frame rate is the frequency at which consecutive images are captured or displayed
+* cv2.putText(the camera, the string, the dimensions, the font, the scale,the RGB,the thickness)
+* get the information about the hand, the id and the landmark (x et y coords)
+* using the coords to get the location of the landmark on the hand
+* by multiplying by the height and the width in pixels

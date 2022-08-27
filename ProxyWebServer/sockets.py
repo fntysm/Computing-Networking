@@ -3,6 +3,13 @@ import socket
 import threading
 import sys
 
+config = {
+    'HOST_NAME': 'localhost',
+    'BIND_PORT': 12345,
+    'MAX_REQUEST_LEN': 4096,
+    'CONNECTION_TIMEOUT' : 10
+}
+
 class Server:
     # creating a socket for the incoming connections, we bind the socket and wait for the client to connect
     def __init__(self, config):
@@ -95,3 +102,9 @@ class Server:
         # exit the system
         self.serverSocket.close()
         sys.exit(0)
+
+
+
+if __name__ == "__main__":
+    server = Server(config)
+    server.clientListen()

@@ -1,7 +1,11 @@
 import cv2
 import mediapipe as mp
 import time
-
+WHITE_COLOR = (224, 224, 224)
+BLACK_COLOR = (0, 0, 0)
+RED_COLOR = (0, 0, 255)
+GREEN_COLOR = (0, 128, 0)
+BLUE_COLOR = (255, 0, 0)
 
 class FaceAI():
     def __init__(self, minDetectConf=0.5, modelSelection=1):
@@ -12,9 +16,17 @@ class FaceAI():
         self.mpDraw = mp.solutions.drawing_utils
     def faceDetection(self, record):
         results = self.FaceDetector.process(cv2.cvtColor(record, cv2.COLOR_BGR2RGB))
+        circleDrawingSpec = self.mpDraw.DrawingSpec(thickness=1, circle_radius=1, color=(0, 255, 0))
+        lineDrawingSpec = self.mpDraw.DrawingSpec(thickness=1, color=(0, 255, 0))
         if results.detections:
-            for id, detection in results.detections:
-                print(id, detection)
+            for id, detection in enumerate(results.detections):
+                self.mpDraw.draw_detection(record, detection,circleDrawingSpec, lineDrawingSpec)
+                x = int(detection.location_data.relative_bounding_box.xmin)
+                y = int(detection.location_data.relative_bounding_box.ymin)
+                w = int(detection.location_data.relative_bounding_box.width)
+                h = int(detection.location_data.relative_bounding_box.height)
+                if detection:
+                    cv2.putText(record, f'{int(detection.score[0]*100)}', (x*w*100,y*h*100), cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 1, BLUE_COLOR, 3)
 def FaceDet():
     cam = cv2.VideoCapture(0)
     previousTime = 0

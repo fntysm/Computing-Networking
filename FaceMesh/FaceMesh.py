@@ -10,10 +10,12 @@ class FaceAI():
         self.FaceMesh = self.mpFaceMesh.FaceMesh(self.mode, self.maxFace)
 
     def FaceMeshAI(self, record):
+        D1Spec = self.mpDraw.DrawingSpec(thickness=1, color=(0, 255, 0))
+        D2Spec = self.mpDraw.DrawingSpec(thickness=1, color=(255, 0, 0))
         results = self.FaceMesh.process(cv2.cvtColor(record, cv2.COLOR_BGR2RGB))
         if results.multi_face_landmarks:
             for face in results.multi_face_landmarks:
-                print(face)
+                self.mpDraw.draw_landmarks(record, face, self.mpFaceMesh.FACEMESH_TESSELATION, D1Spec, D2Spec)
 def FaceMeshMain():
     cam = cv2.VideoCapture(0)
     Faces = FaceAI()

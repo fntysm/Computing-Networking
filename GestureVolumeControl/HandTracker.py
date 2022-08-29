@@ -13,6 +13,8 @@ class HandAI:
         self.hands = self.mp_hands.Hands()
         self.mpDraw = mp.solutions.drawing_utils
     def detectHands(self, record):
+        D1Spec = self.mpDraw.DrawingSpec(thickness=1, color=(0, 255, 0))
+        lmList = []
         # sending our RGB image to the "hands" object
         recordRGB = cv2.cvtColor(record, cv2.COLOR_BGR2RGB)
         # processing after converting the BGR image to RGB
@@ -22,16 +24,14 @@ class HandAI:
         if self.results.multi_hand_landmarks:
             # if we detected hand(s)
             for self.eachHand in self.results.multi_hand_landmarks:
-                self.findPos(record, self.eachHand)
-                self.mpDraw.draw_landmarks(record, self.eachHand, self.mp_hands.HAND_CONNECTIONS)
-        return record
-    def findPos(self, record, eachHand):
-        for id, lm in enumerate(self.eachHand.landmark):
-            print(id, lm)
-            height, width, channel = record.shape
-            # to find the position
-            cx, cy = int(lm.x * width), int(lm.y * height)
-            cv2.putText(record, str(id + 1), (cx, cy), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 128), 2)
+                for id, lm in enumerate(self.eachHand.landmark):
+                    lmList.append([id, lm])
+                    height, width, channel = record.shape
+                    # to find the position
+                    cx, cy = int(lm.x * width), int(lm.y * height)
+                    cv2.putText(record, str(id + 1), (cx, cy), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 2)
+                self.mpDraw.draw_landmarks(record, self.eachHand, self.mp_hands.HAND_CONNECTIONS, D1Spec)
+        return record, lmList
 def HandMain():
     cam = cv2.VideoCapture(0)
     Hands = HandAI()

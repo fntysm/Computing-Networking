@@ -21,6 +21,7 @@ cam = cv2.VideoCapture(0)
 Hands = HandTracker.HandAI(detectConf=0.75)
 previousTime = 0
 vol = 0
+volPer = 0
 volBar = 400
 while True:
     success, record = cam.read()
@@ -45,15 +46,16 @@ while True:
         # to convert the hand length to the volume range
         vol = np.interp(length,[50,300],[minVol,maxVol])
         volBar = np.interp(length, [50,300], [400, 150])
+        volPer = np.interp(length, [50,300], [0, 100])
         volume.SetMasterVolumeLevel(vol, None)
 
     cv2.rectangle(record, (50, 150), (85, 400), (0, 255, 0), 3)
     cv2.rectangle(record, (50, int(volBar)), (85, 400), (0, 255, 0), cv2.FILLED)
-    cv2.putText(record, f'{int(vol+100)}%', (90, 150), cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 1, (0, 255, 0), 3)
+    cv2.putText(record, f'{int(volPer)}%', (90, 150), cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 1, (0, 255, 0), 3)
     currentTime = time.time()
     fps = 1 / (currentTime - previousTime)
     previousTime = currentTime
-    cv2.putText(record, f'FPS: {int(fps)}', (90, 80), cv2.FONT_HERSHEY_SCRIPT_PLAIN, 1, (255, 0, 0), 3)
+    cv2.putText(record, f'FPS: {int(fps)}', (90, 80), cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 1, (255, 0, 0), 3)
     # the camera window
     cv2.imshow("camera currently displaying", record)
     # to maintain displaying before exit

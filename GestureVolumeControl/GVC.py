@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import math
 import HandTracker
 import time
 
@@ -12,13 +13,21 @@ while True:
     record, lmList = Hands.detectHands(record)
     if len(lmList) != 0:
         # cv2.circle(cam, dimensions, radius, color, cv2.FILLED)
-        xt, yt = lmList[4][1].x, lmList[4][1].y
-        xi, yi = lmList[8][1].x, lmList[8][1].y
-        p1 = tuple((xt, yt))
-        p2 = tuple((xi, yi))
+        thumb = lmList[4][1]
+        index = lmList[8][1]
+        w, h, c = record.shape
+        xt, yt = int(thumb.x*w), int(thumb.y*h)
+        xi, yi = int(index.x*w), int(index.y*h)
+        cx, cy = (xt+xi)//2, (yt+yi)//2
+        # the thumb
         cv2.circle(record, (xt, yt), 15, (255, 0, 0), cv2.FILLED)
+        # the index
         cv2.circle(record, (xi, yi), 15, (255, 0, 0), cv2.FILLED)
-        cv2.line(record, p1, p2, (255,0,0), 3)
+        # the center
+        cv2.circle(record, (cx, cy), 15, (255, 0, 0), cv2.FILLED)
+        cv2.line(record, (xt, yt), (xi, yi), (255,0,0), 3)
+        length = math.hypot(xi-xt,yi-yt)
+        print("LENGTH: ",length)
 
     currentTime = time.time()
     fps = 1 / (currentTime - previousTime)

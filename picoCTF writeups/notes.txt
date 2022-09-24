@@ -1,0 +1,11 @@
+this is a document for me:
+hex_string = "0x3D"[2:]
+bytes_object = bytes.fromhex(hex_string)
+ascii_string = bytes_object.decode("ASCII")
+print(ascii_string)
+h = input('Enter hex : ')
+d = int(h, base=16)
+print('Decimal :', d)
+d = int(input('Enter decimal : '))
+h = hex(d)
+print('Hexadecimal :', h)

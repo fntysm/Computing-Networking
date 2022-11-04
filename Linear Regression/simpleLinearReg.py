@@ -19,3 +19,4 @@ results = sm.OLS(y,b0).fit()
 yhat = 0.0017*x+0.275
 fig = plt.plot(x,yhat,lw=4,c='yellow',label="regression line")
 # print(plt.scatter(x,y),fig,plt.xlabel('SAT',fontsize=20),plt.ylabel('GPA',fontsize=20),plt.show())
+

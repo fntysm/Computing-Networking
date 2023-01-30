@@ -1,3 +1,5 @@
+# this is to practice python
+
 def create_spend_chart(categories):
     # The percentage spent should be calculated only with withdrawals
     bar_chart = "Percentage spent by category\n"

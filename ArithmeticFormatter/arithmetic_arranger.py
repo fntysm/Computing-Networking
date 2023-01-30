@@ -1,6 +1,7 @@
+# this is to practice python
 
 # when we wanted to transopse a 2d array, we could've used numpy:  import numpy as np y=np.transpose(x)
-# but i chose to write a function
+# but i chose to write a function and with no libraries
 def transposee(matrix):
     result = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
     return result

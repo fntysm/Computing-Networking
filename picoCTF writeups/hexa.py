@@ -1,6 +1,0 @@
-d = int(input("Enter the decimal number: "))
-h = hex(d)
-print('Hexadecimal :', h)
-bytes_object = bytes.fromhex(h[2:])
-ascii_string = bytes_object.decode("ASCII")
-print(ascii_string)
